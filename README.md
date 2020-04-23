@@ -23,7 +23,7 @@ php Migration.php
 ```
 
 ## Test API disburse
-1. Using curl (don't forget change ```base-url```)
+Using curl (don't forget change ```base-url```)
 ```
 curl --location --request POST 'http://base-url/flip/controller/DisbursementController.php' \
 --form 'bank_code=BCA' \
@@ -33,7 +33,7 @@ curl --location --request POST 'http://base-url/flip/controller/DisbursementCont
 ```
 
 ## Test API disbursement status
-1. Using curl (don't forget change ```base-url``` and ```transaction-id```)
+Using curl (don't forget change ```base-url``` and ```transaction-id```)
 ```
 curl --location --request POST 'http://base-url/flip/controller/UpdateController.php?id=transaction-id'
 ```
