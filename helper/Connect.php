@@ -1,5 +1,4 @@
 <?php
-
 class Connect{
 
     private $conn;
@@ -10,10 +9,12 @@ class Connect{
 
     private $password;
 
-    function __construct(){
-        $this->servername = "127.0.0.1";
-        $this->username = "root";
-        $this->password = "admin";
+    function __construct($dbName=null){
+        $string = file_get_contents("../config.json");
+        $json = json_decode($string);
+        $this->servername = $json->host;
+        $this->username = $json->username;
+        $this->password = $json->password;
 
         // Create connection
         $this->conn = new mysqli($this->servername, $this->username, $this->password);
@@ -21,6 +22,10 @@ class Connect{
         // Check connection
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->connect_error);
+        }
+
+        if($dbName!=NULL){
+            $this->conn->select_db($dbName);
         }
     }
 
@@ -36,13 +41,14 @@ class Connect{
     public function query($sql){
         if ($this->conn->query($sql) !== TRUE) {
             error_log($this->conn->error);
+            echo $this->conn->error;
             return false;
         } 
         return true;
     }
 
-    public function select($sql){
-
+    public function selectDb($dbName){
+        $this->conn->select_db($dbName);
     }
 }
 
