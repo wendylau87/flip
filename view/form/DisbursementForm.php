@@ -21,6 +21,8 @@ class DisbursementForm extends BaseView{
     protected $time_served;
 
     protected $fee;
+
+    protected $status;
 }
 
 ?>

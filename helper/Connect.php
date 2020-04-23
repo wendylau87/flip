@@ -39,12 +39,16 @@ class Connect{
     }
 
     public function query($sql){
-        if ($this->conn->query($sql) !== TRUE) {
+        $result = $this->conn->query($sql);
+        if (is_bool($result) && $result !== TRUE) {
             error_log($this->conn->error);
-            echo $this->conn->error;
             return false;
+        }
+        else if(is_bool($result) && $result===true){
+            return true;
         } 
-        return true;
+        
+        return $result;
     }
 
     public function selectDb($dbName){

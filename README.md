@@ -32,5 +32,11 @@ curl --location --request POST 'http://base-url/flip/controller/DisbursementCont
 --form 'remark=testing'
 ```
 
+## Test API disbursement status
+1. Using curl (don't forget change ```base-url``` and ```transaction-id```)
+```
+curl --location --request POST 'http://base-url/flip/controller/UpdateController.php?id=transaction-id'
+```
+
 
 

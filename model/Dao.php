@@ -61,10 +61,38 @@ class Dao{
     }
 
     public function update(){
+        $properties = get_object_vars($this);
+        $sql = "UPDATE ".$this->table_name." SET";
 
+        foreach($properties as $key=>$value){
+            if(!($key== "table_name" || $key=="id" || $key == "db")){
+                if(!($value == ''|| $value == NULL)){
+                    if(is_numeric($value)){
+                        $sql .= " `$key` = $value,";
+                    }
+                    else{
+                        $sql .= " `$key` = '$value',";
+                    }
+                }
+            }
+        }
+
+        $sql = rtrim($sql,",")." WHERE `id` = $this->id;";
+        return $this->db->query($sql);
     }
 
     public function findByProperty($key, $value){
+        $sql = "SELECT * FROM $this->table_name WHERE $key = ";
+        if(is_numeric($value)){
+            $sql .= "$value;";
+        }
+        else{
+            $sql .= "'$value';";
+        }
+        $result = $this->db->query($sql);
+        $rows = $result->fetch_assoc();
+
+        return $rows;
 
     }
 

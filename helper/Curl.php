@@ -27,6 +27,19 @@ class Curl{
         return $output;
     }
 
+    public function get($url){
+        curl_setopt($this->_ch, CURLINFO_HEADER_OUT, true);
+        curl_setopt($this->_ch, CURLOPT_URL, $url);
+        curl_setopt($this->_ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($this->_ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($this->_ch, CURLOPT_RETURNTRANSFER, 1); 
+        curl_setopt($this->_ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($this->_ch, CURLOPT_USERNAME, "HyzioY7LP6ZoO7nTYKbG8O4ISkyWnX1JvAEVAhtWKZumooCzqp41");
+        $output = curl_exec($this->_ch);
+
+        return $output;
+    }
+
 }
 
 ?>

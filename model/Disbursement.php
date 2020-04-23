@@ -27,6 +27,8 @@ class Disbursement extends Dao{
     protected $response_time_served;
 
     protected $response_fee;
+
+    protected $response_status;
     
 
     function __construct()

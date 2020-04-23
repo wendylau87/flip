@@ -20,5 +20,6 @@ CREATE TABLE `disbursement` (
   `response_receipt` text,
   `response_time_served` datetime DEFAULT NULL,
   `response_fee` double DEFAULT NULL,
+  `response_status` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
